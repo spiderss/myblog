@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="plugins/tableTree/css/jquery.treetable.css">
+    <link rel="stylesheet" href="plugins/tableTree/css/jquery.treetable.theme.default.css">
+    <script src="static/js/jquery-3.2.1.min.js"></script>
+
+    <script src="plugins/tableTree/jquery.treetable.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<table id="example-advanced" class="treetable">
+    <caption>
+        <a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>
+        <a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a>
+    </caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Kind</th>
+        <th>Size</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr data-tt-id="1" class="leaf collapsed"><td><span class="file">Acknowledgements.rtf</span></td><td>File</td><td>480.95 KB</td></tr>
+    <tr data-tt-id="2" class="branch expanded"><td><span class="folder">CHUD</span></td><td>Folder</td><td>--</td></tr>
+    <tr data-tt-id="2-1" data-tt-parent-id="2" class="branch expanded"><td><span class="folder">CHUD</span></td><td>Folder</td><td>--</td></tr>
+  </tbody>
+</table>
+<script>
+    $("#example-advanced").treetable({ expandable: true, theme:'vsStyle' });
+
+    // Highlight selected row
+    $("#example-advanced tbody").on("mousedown", "tr", function() {
+        $(".selected").not(this).removeClass("selected");
+        $(this).toggleClass("selected");
+    });
+
+</script>
+</body>
+</html>

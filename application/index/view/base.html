@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$seo['title']}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css"  href="/public/plugins/layui/css/layui.css">
+    {block name="css"}{/block}
+    <style>
+        div.left{float: left;width: 18%;}
+        div.right{float: right;width: 81.5%;}
+    </style>
+</head>
+<body>
+<div class="header layui-bg-cyan">
+    <ul class="layui-nav layui-bg-cyan layui-container">
+        <li class="layui-nav-item"><a href="/public/">首页</a></li>
+        <li class="layui-nav-item {if $cat==1}layui-this{/if}"><a href="/public/category/1">新年特惠</a></li>
+        <li class="layui-nav-item {if $cat==2}layui-this{/if}"><a href="/public/category/2">特产美食</a></li>
+        <li class="layui-nav-item {if $cat==3}layui-this{/if}"><a href="/public/category/3">新品来袭</a></li>
+        <li class="layui-nav-item {if $cat==4}layui-this{/if}"><a href="/public/category/4">珍诚之宝</a></li>
+        <li class="layui-nav-item {if $cat=='about'}layui-this{/if}"><a href="/public/about">关于我们</a></li>
+    </ul>
+</div>
+
+{block name="body"}{/block}
+
+
+<div class="layui-col-xs6 layui-col-md12 layui-bg-cyan" style="margin-top: 30px;">
+    <div class="grid-demo grid-demo-bg2" style="text-align: center;padding-top: 20px;height: 40px;">版权所有</div>
+</div>
+
+
+
+<script src="/public/plugins/layui/layui.js"></script>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['setDocumentTitle', document.domain + "/" + document.title]);
+    _paq.push(['enableHeartBeatTimer', 30]);
+    (function() {
+        var u="//localhost/piwik/";
+        _paq.push(['setTrackerUrl', u+'js/']);
+        _paq.push(['setSiteId', '4']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<!-- End Matomo Code -->
+{block name="js"}{/block}
+</body>
+</html>

@@ -1,0 +1,29 @@
+{extend name="base"}
+{block name="body"}
+<div class="layui-container">
+    {include file="index/left"}
+<div class="right">
+    <div class="layui-row">
+        {foreach $goodlist as $key=>$vo }
+        <div class="layui-col-md4">
+            <div class="grid-demo grid-demo-bg1">
+                <a href="/public/good/{$cat}/{$vo.id}" style="border: 1px solid #e1e1e1;padding: 2px;display: block;text-align: center;">
+                    <img src="{$vo.image}" alt="" style="padding:2px;width: 98%;height: 225px;">
+                    <p style="padding:10px 0px">{$vo.title}</p>
+                </a>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+</div>
+
+</div>
+{/block}
+{block name="js"}
+<script>
+    var category="{$catname}";
+    _paq.push['setEcommerceView', false, false, category, false];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+</script>
+{/block}
