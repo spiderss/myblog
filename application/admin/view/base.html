@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>后台首页</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link href="/plugins/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    {block name="css"}{/block}
+  </head>
+<body >
+<!--导航头部 start-->
+<div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+    <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">后台管理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:alert('跳转首页')"><i class="glyphicon glyphicon-home"></i>首页</a> </li>
+                <li><a href="javascript:alert('清除缓存')"><i class="glyphicon glyphicon-refresh"></i>清除缓存</a> </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-user"></i>&nbsp;admin&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="javascript:alert('修改')"><i class="glyphicon glyphicon-cog"></i>修改个人信息</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" class="ajax-logout"><i class="glyphicon glyphicon-off"></i>退出</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--导航头部 end-->
+<div class="container-fluid all" >
+    <!--左侧-->
+    <div class="sidebar" style="left: 0px;">
+        <ul class="nav">
+            <li><a href="index.html">主页面</a></li>
+            <li class="has-sub"><a href="javascript:void(0)">权限设置 <i class="glyphicon glyphicon-chevron-right"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="/admin/admins/index"><i class="fa fa-circle-o fa-fw"></i>&nbsp;管理员 </a></li>
+                    <li><a href="left2.html"><i class="fa fa-circle-o fa-fw"></i>&nbsp;角色管理</a></li>
+                </ul>
+            </li>
+
+            <li class="has-sub"><a href="javascript:void(0)">文章管理 <i class="glyphicon glyphicon-chevron-right"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="/admin/admins/index"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表 </a></li>
+                    <li><a href="left2.html"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章分类</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--左侧-->
+    <div class="maincontent row form-horizontal" style="">
+        <!--我是主要内容 start-->
+          {block name="main"}{/block}
+    </div>
+</div>
+
+
+
+<!--底部信息-->
+<div class="footer">
+    <p class="text-center">
+        2017 &copy; zhang.
+    </p>
+</div>
+<!--底部end-->
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/plugins/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+{block name="js"}{/block}
+<script src="/static/js/admin.js?v={$v}"></script>
+</body>
+</html>

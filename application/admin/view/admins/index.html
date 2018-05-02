@@ -1,0 +1,49 @@
+{extend name="base"}
+
+{block name="main"}
+<ul class="breadcrumb">
+    <li class="active">管理员列表页</li>
+</ul>
+<div class="panel panel-default">
+
+    <div class="panel-body admin-operate-fast">
+        <a href="/admin/admins/create">添加新管理员</a>
+    </div>
+</div>
+
+    <table  class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>账号</th>
+            <th>姓名</th>
+            <th>邮箱</th>
+            <th>加入时间</th>
+            <th>最后登录时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name='lists' id='user'}
+        <tr>
+            <td>{$user.username}</td>
+            <td>{$user.name}</td>
+            <td>{$user.email}</td>
+            <td>{$user.addtime} </td>
+            <td>{$user.lastlogintime|date="Y-m-d H:i:s"}</td>
+            <td>
+                <a class="btn btn-default" href="edit/id/{$user.id}">修改</a>
+                <a class="btn btn-default ajax-delete" href="delete/id/{$user.id}">删除</a>
+            </td>
+        </tr>
+        {/volist}
+
+        </tbody>
+    </table>
+<div id="page-list" style="text-align: right;padding-right: 5px">
+    {$lists|raw}
+</div>
+
+{/block}
+{block name="js"}
+
+{/block}

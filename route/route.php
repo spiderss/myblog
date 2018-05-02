@@ -13,19 +13,14 @@ Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
-Route::get('/', 'index/index/index');
-Route::get('/about', 'index/index/about');
-Route::get('/category/:cate', 'index/index/category');
-Route::get('/good/:cate/:id', 'index/index/good');
 
-Route::get('wxpay.php', 'index/hello');
-Route::get('user', 'member/index/index');
-Route::get('hello/:name', function (Response $response, $name) {
-    return $response
-        ->data('Hello,' . $name)
-        ->code(200)
-        ->contentType('text/plain');
-});
-return [
 
-];
+//Route::get('/', 'index/index/index');
+//Route::get('/about', 'index/index/about');
+//Route::get('/category/:cate', 'index/index/category');
+////Route::get('/good/:cate/:id', 'index/index/good');
+//
+//Route::get('good/[:cate]/[:id]', 'index/index/good');
+//
+//Route::get('wxpay.php', 'index/hello');
+//Route::get('user', 'member/index/index');

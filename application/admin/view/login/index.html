@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link href="/plugins/layui/css/layui.css?v=2.0" rel="stylesheet">
+    <link rel="stylesheet" href="/plugins/iconfont/style.css?v=2.0">
+    <style>
+        *{padding: 0px; margin: 0px}
+        input[type='checkbox']{vertical-align: middle}
+         input{box-sizing: border-box;-webkit-box-sizing:border-box;}
+        .login-body{font-family:"微软雅黑"; font-size:14px;background:url('/static/images/login_bg.jpg?v=1.0') no-repeat;}
+        .wrap1{position:absolute; top:0; right:0; bottom:0; left:0; margin:auto ;width: 30%;}/*把整个屏幕真正撑开--而且能自己实现居中*/
+        .main_content{background:url('/static/images/login_main_bg.png') repeat; margin-left:auto; margin-right:auto; text-align:left; float:none; border-radius:8px;}
+        .layui-form-item{position:relative;margin-bottom: 15px;}
+        .login_btn{display:block; background:#3872f6; color:#fff; font-size:15px; width:100%; line-height:40px; border-radius:3px; border:none; }
+        .login_input{width:100%; border:1px solid #3872f6; border-radius:3px; line-height:40px; padding:2px 5px 2px 35px; background:#fff;}
+        .icon_font{position:absolute; bottom:15px; left:10px; font-size:18px; color:#3872f6;}
+        .font16{font-size:16px;}
+        .mg-b20{margin-bottom:20px;}
+        @media (min-width:200px){.pd-xs-20{padding:20px;}}
+        @media (min-width:768px){.pd-sm-50{padding:50px;}}
+        .text-center{text-align: center;color: #F2F2F2}
+        .layui-form-checked[lay-skin=primary] i{
+            border-color: #3872F6;
+            background-color: #3872F6;
+        }
+        .layui-form-checkbox[lay-skin=primary]:hover i{
+            border-color: #3872F6;
+        }
+    </style>
+</head>
+
+<body class="login-body">
+
+<div class="container wrap1 layui-container " style="height:450px;">
+    <h2 class="text-center mg-b20">邻里中国</h2>
+    <div class="main_content pd-xs-20 pd-sm-50">
+        <p class="text-center font16 mg-b20">用户登录</p>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <i class="icon-user icon_font"></i>
+                <input type="text" name="username" class="login_input" value="admin" lay-verify="required" id="Email1" placeholder="请输入用户名" />
+            </div>
+            <div class="layui-form-item">
+                <i class="icon-lock icon_font"></i>
+                <input type="password" name="password" class="login_input" value="123456" lay-verify="required|pass" id="Password1" placeholder="请输入密码" />
+            </div>
+            <div class="layui-form-item">
+                    <input type="checkbox" name="remember" lay-skin="primary" title="记住登录" checked="">
+            </div>
+            <div class="layui-form-item">
+            <button class="login_btn layui-btn" lay-submit="" lay-filter="login">登录</button>
+            </div>
+        </form>
+    </div><!--row end-->
+</div><!--container end-->
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/plugins/layui/layui.all.js"></script>
+<script>
+
+    layui.use(['form'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+        //自定义验证规则
+        form.verify({
+            pass: [/(.+){6,12}$/, '密码必须6到12位']
+        });
+        //监听登录方式
+        form.on('submit(login)', function(data){
+
+            $.ajax({
+                url: "login.html",
+                type: "post",
+                dataType: 'json',
+                data:data.field,
+                success:function(result){
+                    if(result.code==1){
+                        setTimeout(function () {
+                            window.location.href=result.url
+                        },result.wait*1000)
+                    }
+                    layer.msg(result.msg)
+                },
+                error:function(error){
+                    console.log("出错了"+error)
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+</script>
+
+</body>
+</html>
