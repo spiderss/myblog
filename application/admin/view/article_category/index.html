@@ -1,0 +1,96 @@
+{extend name="base"}
+{block name="main"}
+<ul class="breadcrumb">
+    <li class="active">文章分类</li>
+</ul>
+<div class="table-list">
+  <table id="table">
+      <tr data-tt-id="1">
+          <td>Parent</td>
+      </tr>
+      <tr data-tt-id="2" data-tt-parent-id="1">
+          <td>Child</td>
+      </tr>
+  </table>
+</div>
+{/block}
+{block name="js"}
+<link rel="stylesheet" href="/plugins/tableTree/css/jquery.treetable.css">
+<link rel="stylesheet" href="/plugins/tableTree/css/jquery.treetable.theme.default.css">
+<script type="text/javascript" src="/plugins/tableTree/jquery.treetable.js"></script>
+<script type="text/javascript" src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#table").treetable({
+//            expandable:true
+        });
+
+        //突出显示所选行
+        $("#table tbody").on("mousedown","tr",function(){
+            $(".selected").not(this).removeClass("selected");
+            $(this).toggleClass("selected");
+        });
+
+        // Drag & Drop Example Code
+        $("#table .file, #table .folder").draggable({
+            helper: "clone",
+            opacity: .75,
+            refreshPositions: true,
+            revert: "invalid",
+            revertDuration: 300,
+            scroll: true
+        });
+
+        $("#table .folder").each(function() {
+            $(this).parents("#table tr").droppable({
+                accept: ".file, .folder",
+                drop: function (e, ui) {
+                    var droppedEl = ui.draggable.parents("tr");
+                    $("#table").treetable("move", droppedEl.data("ttId"), $(this).data("ttId"));
+                },
+                hoverClass: "accept",
+                over: function (e, ui) {
+                    var droppedEl = ui.draggable.parents("tr");
+                    if (this != droppedEl[0] && !$(this).is(".expanded")) {
+                        $("#table").treetable("expandNode", $(this).data("ttId"));
+                    }
+                }
+            });
+        });
+    })
+
+</script>
+
+    <!--$(function () {-->
+        <!--var columns=[-->
+            <!--{"field":"sel",checkbox:true},-->
+            <!--{"field":"listorder",title:"排序"},-->
+            <!--{"field":"catname",title:"分类名称"},-->
+            <!--{"field":"operate",title:"操作"},-->
+        <!--];-->
+
+        <!--var $table = $("#table");-->
+        <!--$table.bootstrapTable({-->
+            <!--url:'/data/cate_test.json',-->
+            <!--striped:true,-->
+            <!--sidePagenation:'server',-->
+            <!--idField:'id',-->
+            <!--columns:columns,-->
+            <!--treeShowField: 'catname',-->
+            <!--parentIdField: 'pid',-->
+            <!--onLoadSuccess: function(data) {-->
+<!--//                $table.treegrid({-->
+<!--//                    initialState: 'collapsed',//收缩-->
+<!--//                    treeColumn: 1,//指明第几列数据改为树形-->
+<!--//                    expanderExpandedClass: 'glyphicon glyphicon-triangle-bottom',-->
+<!--//                    expanderCollapsedClass: 'glyphicon glyphicon-triangle-right',-->
+<!--//                    onChange: function() {-->
+<!--//                        $table.bootstrapTable('resetWidth');-->
+<!--//                    }-->
+<!--//                });-->
+            <!--}-->
+        <!--});-->
+    <!--})-->
+
+
+{/block}

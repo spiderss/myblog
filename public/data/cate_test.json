@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "pid": 0,
+    "catname": "系统管理",
+    "referred": "管理"
+  },
+  {
+    "id": 2,
+    "pid": 0,
+    "catname": "字典管理",
+    "referred": "字典"
+  },
+  {
+    "id": 20,
+    "pid": 1,
+    "catname": "新增系统",
+    "referred": "新增"
+  },
+  {
+    "id": 21,
+    "pid": 1,
+    "catname": "编辑系统",
+    "referred": "编辑"
+  },
+  {
+    "id": 22,
+    "pid": 1,
+    "catname": "删除系统",
+    "referred": "删除"
+  },
+  {
+    "id": 33,
+    "pid": 2,
+    "catname": "系统环境",
+    "referred": "环境"
+  },
+  {
+    "id": 333,
+    "pid": 33,
+    "catname": "新增环境",
+    "referred": "新增"
+  },
+  {
+    "id": 3333,
+    "pid": 33,
+    "catname": "编辑环境",
+    "referred": "编辑"
+  },
+  {
+    "id": 233332,
+    "pid": 33,
+    "catname": "删除环境",
+    "referred": "删除"
+  }
+]

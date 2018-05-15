@@ -1,19 +1,15 @@
 <?php
 namespace app\index\controller;
-use app\common\model\AdminUser;
+
 use app\common\controller\HomeBase;
 class Index extends HomeBase
 {
-	private $db;
-	public function __construct()
-	{
-	    parent::__construct();
-		$this->db=new AdminUser;
-	}
+
     public function index()
     {
-      $seo=array("title"=>"网站首页信心");
-      return $this->fetch("index",['seo'=>$seo]);
+       //echo "<a href='http://shop.llzglocal.cn/goods.php?id=476'>点击连金额</a>";
+      // $seo=array("title"=>"网站首页信心");
+      return $this->fetch("index");
     }
 
     public function hello()

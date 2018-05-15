@@ -12,9 +12,14 @@ class Article extends AdminBase
      *
      * @return \think\Response
      */
-    public function index()
+    public function index($p=1)
     {
         //
+        $list = \think\Db::name('article')->paginate(2)->each(function($item, $key){
+            return $item;
+        });
+        $this->assign("lists",$list);
+        return $this->fetch();
     }
 
     /**
