@@ -12,14 +12,7 @@ class SystemSetting extends AdminBase
      */
     public function index($config=[])
     {
-        $somevar=15;
-        function addit () {
-            GLOBAL $somevar;
-            $somevar++ ;
-            echo "somevar is $somevar";
-        }
-        addit ();
-
+       return $this->fetch();
     }
 
     private function hannuo($n,$origin,$big,$small)
