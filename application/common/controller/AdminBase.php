@@ -2,8 +2,10 @@
 
 namespace app\common\controller;
 
+use think\Container;
 use think\Controller;
 use think\Request;
+use think\Config;
 
 class AdminBase extends Controller
 {
@@ -14,5 +16,10 @@ class AdminBase extends Controller
         if(!session("adminName")){
             $this->error("请先登录","login/index");
         }
+    }
+
+    public function getMenus()
+    {
+
     }
 }

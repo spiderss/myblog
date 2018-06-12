@@ -15,17 +15,5 @@ class SystemSetting extends AdminBase
        return $this->fetch();
     }
 
-    private function hannuo($n,$origin,$big,$small)
-    {
-//        if($n==1)
-//        {
-//            echo "$origin->$small <br/>";
-//            return "";
-//        }
-//        $this->hannuo($n-1,$origin,$small,$big);
-//        echo "$origin->$small <br/>";
-//        $this->hannuo($n-1,$big,$origin,$small);
 
-
-    }
 }

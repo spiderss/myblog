@@ -1,0 +1,130 @@
+{extend name="base"}
+{block name="css"}
+<link rel="stylesheet" href="/plugins/bootstrapvalidator/dist/css/bootstrapValidator.css">
+<link rel="stylesheet" href="/plugins/bootstrap-switch-master/css/bootstrap3/bootstrap-switch.css">
+{/block}
+{block name="main"}
+<ul class="breadcrumb">
+    <li class="active">角色添加</li>
+</ul>
+<div class="panel panel-default">
+
+    <div class="panel-body admin-operate-fast">
+        <a href="index">返回角色</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <form class="form-horizontal" id="myform" action="save">
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">角色名</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="name" id="name" placeholder="请输入角色">
+                <!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
+                <!--<span id="inputSuccess3Status" class="sr-only">(success)</span>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">角色描述</label>
+            <div class="col-sm-4">
+              <textarea id="description" class="form-control" name="description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">是否启用</label>
+            <div class="col-sm-4">
+                <div class="switch" data-on="info" data-off="success">
+                    <input type="checkbox" checked  name="status"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-default ajax-submit">添加</button>
+                <span id="returnMessage"></span>
+            </div>
+        </div>
+        <input type="hidden" name="method" value="POST">
+    </form>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript" src="/plugins/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-switch-master/js/bootstrap-switch.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('[name="status"]').bootstrapSwitch({
+        onText:"启用",
+        offText:"禁用",
+        onColor:"success",
+        offColor:"info",
+        size:"small",
+        onSwitchChange:function(event,state){
+            if(state==true){
+                $(this).val("1");
+            }else{
+                $(this).val("2");
+            }
+        }
+    });
+})
+
+        var rules={
+            name: {
+                message: '角色名验证失败',
+                validators: {
+                    notEmpty: {
+                        message: '角色名不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[\u4e00-\u9fa5]+$/,
+                        message: '角色名只能是中文'
+                    },
+                    remote: {
+                        message: '用户名不能重复',
+                        url: 'checkUnique',
+                        data : {field:"name"},//这里默认会传递该验证字段的值到后端
+                        delay:2000 //这里特别要说明，必须要加此属性，否则用户输入一个字就会访问后台一次，会消耗大量的系统资源，
+                    }
+                }
+            },
+
+        }
+
+    $(function () {
+        $('#myform').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: rules
+        });
+    });
+
+    $(document).ready(function () {
+        $(".ajax-submit").click(function () {
+            var url=$("#myform").attr("action");
+            var bootstrapValidator = $('#myform').data('bootstrapValidator');
+            bootstrapValidator.validate();
+            if(bootstrapValidator.isValid()){
+                $.post(url,$("#myform").serialize(),function(data){
+                     if(data.code==1)
+                     {
+                         window.location.reload();
+                     }else
+                     {
+                         $("#returnMessage").hide().html('<label class="label label-danger">修改失败!</label>').show(300);
+                         setTimeout(function(){
+                             $(".ajax-submit").prop("disabled","");
+                     },2000);
+                     }
+                });
+            }
+        })
+    })
+</script>
+{/block}
